@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Exam System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="auth-header">
+            <a href="index.html" class="back-home">← Back to Home</a>
+            <h1>📝 Create New Account</h1>
+        </header>
+        
+        <main class="auth-container">
+            <div class="auth-card">
+                <div class="auth-progress">
+                    <div class="progress-step active">1</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">2</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">3</div>
+                </div>
+                
+                <form id="registerForm" class="auth-form">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="fullName">
+                                <span class="label-icon">👤</span>
+                                Full Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                placeholder="Enter your full name" 
+                                required
+                            >
+                            <small class="form-hint">As per your ID card</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">
+                                <span class="label-icon">📧</span>
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Enter your email" 
+                                required
+                            >
+                            <small class="form-hint">We'll send confirmation to this email</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Account Details</h3>
+                        
+                        <div class="form-group">
+                            <label for="username">
+                                <span class="label-icon">🎓</span>
+                                Username
+                            </label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="Choose a username" 
+                                required
+                            >
+                            <small class="form-hint">Must be unique</small>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">
+                                    <span class="label-icon">🔒</span>
+                                    Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    placeholder="Create password" 
+                                    required
+                                >
+                                <div class="password-strength">
+                                    <div class="strength-bar"></div>
+                                    <span class="strength-text">Weak</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">
+                                    <span class="label-icon">🔒</span>
+                                    Confirm Password
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    placeholder="Confirm password" 
+                                    required
+                                >
+                                <small class="form-hint">Must match above</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="studentId">
+                                <span class="label-icon">🎫</span>
+                                Student ID (Optional)
+                            </label>
+                            <input 
+                                type="text" 
+                                id="studentId" 
+                                placeholder="If applicable"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">
+                                <span class="label-icon">📱</span>
+                                Phone Number (Optional)
+                            </label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="+1 234 567 8900"
+                            >
+                        </div>
+                        
+                        <div class="form-group terms">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">
+                                I agree to the <a href="terms.html">Terms of Service</a> and 
+                                <a href="privacy.html">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="registerError" class="error-message" style="display: none;">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-text"></span>
+                    </div>
+                    
+                    <div id="registerSuccess" class="success-message" style="display: none;">
+                        <span class="success-icon">✅</span>
+                        <span class="success-text"></span>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-block btn-register">
+                            <span class="btn-text">Create Account</span>
+                            <span class="spinner" style="display: none;"></span>
+                        </button>
+                        
+                        <div class="auth-links">
+                            <p>Already have an account? <a href="login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        
+        <footer class="auth-footer">
+            <p>Your data is secured with 256-bit encryption</p>
+        </footer>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

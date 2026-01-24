@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Session - Online Exam System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <header class="exam-header">
+        <div class="exam-header-content">
+            <div class="exam-title">
+                <h1>📝 Examination Session</h1>
+                <p id="examName">Loading exam...</p>
+            </div>
+            
+            <div class="exam-controls">
+                <div class="exam-timer">
+                    <span class="timer-label">Time Remaining:</span>
+                    <div id="timer" class="timer-display">--:--</div>
+                </div>
+                
+                <div class="exam-progress">
+                    <span class="progress-label">Progress:</span>
+                    <div class="progress-container">
+                        <div id="progressBar" class="progress-bar"></div>
+                        <span id="progressText" class="progress-text">0/0</span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-warning btn-help" id="helpBtn">
+                    <span class="btn-icon">❓</span>
+                    Help
+                </button>
+                
+                <button class="btn btn-danger logout-btn">
+                    <span class="btn-icon">🚪</span>
+                    Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="exam-instructions">
+            <p><strong>Instructions:</strong> Read questions carefully. Answers are auto-saved.</p>
+            <div class="exam-warnings">
+                <span class="warning">⚠️ Do not refresh the page</span>
+                <span class="warning">⚠️ Time cannot be paused</span>
+                <span class="warning">⚠️ Submit when finished</span>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="exam-layout">
+            <aside class="exam-sidebar">
+                <h3>Questions</h3>
+                <div id="questionNav" class="question-navigation">
+                </div>
+                
+                <div class="sidebar-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Answered:</span>
+                        <span id="answeredCount" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Remaining:</span>
+                        <span id="remainingCount" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Marked:</span>
+                        <span id="markedCount" class="stat-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color answered"></div>
+                        <span>Answered</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color current"></div>
+                        <span>Current</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color marked"></div>
+                        <span>Marked</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color unanswered"></div>
+                        <span>Unanswered</span>
+                    </div>
+                </div>
+            </aside>
+            
+            <div class="exam-content">
+                <div id="questionsContainer" class="questions-container">
+                    <div class="loading-exam">
+                        <div class="spinner-large"></div>
+                        <p>Loading exam questions...</p>
+                    </div>
+                </div>
+                
+                <div class="question-navigation-buttons">
+                    <button id="prevBtn" class="btn btn-secondary" disabled>
+                        <span class="btn-icon">←</span>
+                        Previous
+                    </button>
+                    
+                    <div class="navigation-center">
+                        <button id="markBtn" class="btn btn-warning">
+                            <span class="btn-icon">📍</span>
+                            Mark for Review
+                        </button>
+                        <button id="clearBtn" class="btn btn-light">
+                            <span class="btn-icon">🗑️</span>
+                            Clear Answer
+                        </button>
+                    </div>
+                    
+                    <button id="nextBtn" class="btn btn-primary">
+                        Next
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+                
+                <div class="exam-actions">
+                    <div class="action-group">
+                        <button id="reviewBtn" class="btn btn-info">
+                            <span class="btn-icon">👁️</span>
+                            Review Answers
+                        </button>
+                        <button id="saveBtn" class="btn btn-success">
+                            <span class="btn-icon">💾</span>
+                            Save Progress
+                        </button>
+                    </div>
+                    
+                    <div class="submit-section">
+                        <p class="submit-warning">⚠️ You cannot change answers after submission</p>
+                        <button id="submitBtn" class="btn btn-danger btn-large">
+                            <span class="btn-icon">📤</span>
+                            Submit Exam
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="helpModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Exam Help & Instructions</h2>
+            <div class="help-content">
+                <h3>Navigation:</h3>
+                <ul>
+                    <li>Use Previous/Next buttons or question numbers</li>
+                    <li>Click on question numbers in sidebar to jump</li>
+                    <li>Answers are auto-saved as you navigate</li>
+                </ul>
+                
+                <h3>Time Management:</h3>
+                <ul>
+                    <li>Timer shows remaining time</li>
+                    <li>Red warning when 5 minutes remaining</li>
+                    <li>Exam auto-submits when time ends</li>
+                </ul>
+                
+                <h3>Questions:</h3>
+                <ul>
+                    <li>MCQ: Select one answer</li>
+                    <li>Checkbox: Select multiple answers</li>
+                    <li>Text: Type your answer</li>
+                </ul>
+                
+                <button id="closeHelp" class="btn btn-primary">Close Help</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

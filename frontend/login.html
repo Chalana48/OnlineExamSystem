@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Online Exam System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http://localhost:5000;">
+</head>
+<body>
+    <div class="container">
+        <header class="auth-header">
+            <a href="index.html" class="back-home">← Back to Home</a>
+            <h1>🔐 Login to Your Account</h1>
+        </header>
+        
+        <main class="auth-container">
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="student">Student Login</button>
+                    <button class="auth-tab" data-tab="admin">Admin Login</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <span class="label-icon">👤</span>
+                            Username
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            placeholder="Enter your username" 
+                            required
+                            autocomplete="username"
+                        >
+                        <small class="form-hint">Use your registered username</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="label-icon">🔒</span>
+                            Password
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            placeholder="Enter your password" 
+                            required
+                            autocomplete="current-password"
+                        >
+                        <small class="form-hint">Case-sensitive</small>
+                    </div>
+                    
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me on this device</label>
+                    </div>
+                    
+                    <!-- Error and Success Messages -->
+                    <div id="loginError" class="error-message" style="display: none;">
+                        <span class="error-icon">⚠️</span>
+                        <span class="error-text"></span>
+                    </div>
+                    
+                    <div id="loginSuccess" class="success-message" style="display: none;">
+                        <span class="success-icon">✅</span>
+                        <span class="success-text"></span>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block btn-login">
+                            <span class="btn-text">Login</span>
+                            <span class="spinner" style="display: none;"></span>
+                        </button>
+                        
+                        <div class="auth-links">
+                            <a href="register.html" class="auth-link">Create new account</a>
+                            <a href="forgot-password.html" class="auth-link">Forgot password?</a>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="auth-info">
+                    <h3>📋 Login Instructions:</h3>
+                    <ul>
+                        <li>Students: Use your student ID as username</li>
+                        <li>Admins: Use your admin credentials</li>
+                        <li>Passwords are case-sensitive</li>
+                        <li>Contact support if you face issues</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="auth-footer">
+            <p>Secure login powered by JWT authentication</p>
+        </footer>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

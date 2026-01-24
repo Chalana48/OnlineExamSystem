@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Online Exam System</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script src="js/config.js"></script>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <div class="admin-logo">
+                <h1>👨‍💼 Admin Dashboard</h1>
+                <p>System Administration Panel</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#exams" class="nav-link">Exams</a>
+                <a href="#users" class="nav-link">Users</a>
+                <a href="#results" class="nav-link">Results</a>
+                <a href="#settings" class="nav-link">Settings</a>
+            </nav>
+            
+            <div class="admin-actions">
+                <button class="btn btn-warning" id="refreshData">🔄 Refresh</button>
+                <button class="btn btn-danger logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="admin-container">
+            
+            <section class="admin-stats-section">
+                <h2>📊 System Overview</h2>
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalUsers">0</div>
+                            <div class="stat-label">Total Users</div>
+                            <div class="stat-change">
+                                <span id="newUsers">0</span> new this week
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalExams">0</div>
+                            <div class="stat-label">Active Exams</div>
+                            <div class="stat-change">
+                                <span id="activeExamsCount">0</span> ongoing
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="completedTests">0</div>
+                            <div class="stat-label">Tests Completed</div>
+                            <div class="stat-change">
+                                Today: <span id="todayTests">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="pendingActions">0</div>
+                            <div class="stat-label">Pending Actions</div>
+                            <div class="stat-change">
+                                <span id="urgentActions">0</span> urgent
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <div class="admin-tabs">
+                
+                <div id="dashboard" class="tab-content active">
+                    
+                    <section class="recent-activity">
+                        <h3>📅 Recent Activity</h3>
+                        <div id="activityLog" class="activity-list">
+                            
+                        </div>
+                    </section>
+
+                   
+                    <section class="admin-actions-section">
+                        <h3>⚡ Quick Admin Actions</h3>
+                        <div class="admin-actions-grid">
+                            <button id="createExamBtn" class="admin-action-card">
+                                <span class="action-icon">➕</span>
+                                <span class="action-text">Create New Exam</span>
+                            </button>
+                            
+                            <button id="manageUsersBtn" class="admin-action-card">
+                                <span class="action-icon">👥</span>
+                                <span class="action-text">Manage Users</span>
+                            </button>
+                            
+                            <button id="viewReportsBtn" class="admin-action-card">
+                                <span class="action-icon">📈</span>
+                                <span class="action-text">View Reports</span>
+                            </button>
+                            
+                            <button id="systemSettingsBtn" class="admin-action-card">
+                                <span class="action-icon">⚙️</span>
+                                <span class="action-text">System Settings</span>
+                            </button>
+                        </div>
+                    </section>
+                </div>
+
+               
+                <div id="exams" class="tab-content">
+                    <div class="tab-header">
+                        <h3>📝 Exam Management</h3>
+                        <button id="addExamBtn" class="btn btn-success">➕ Add New Exam</button>
+                    </div>
+                    
+                    <div class="exams-management">
+                        <div class="search-bar">
+                            <input type="text" id="searchExams" placeholder="Search exams...">
+                            <select id="examFilter">
+                                <option value="all">All Exams</option>
+                                <option value="active">Active</option>
+                                <option value="upcoming">Upcoming</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        
+                        <table id="examsTable" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Exam Name</th>
+                                    <th>Status</th>
+                                    <th>Questions</th>
+                                    <th>Duration</th>
+                                    <th>Participants</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="examsTableBody">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                
+                <div id="users" class="tab-content">
+                    <div class="tab-header">
+                        <h3>👥 User Management</h3>
+                        <button id="addUserBtn" class="btn btn-success">➕ Add New User</button>
+                    </div>
+                    
+                    <div class="users-management">
+                        <div class="user-filters">
+                            <input type="text" id="searchUsers" placeholder="Search users...">
+                            <select id="roleFilter">
+                                <option value="all">All Roles</option>
+                                <option value="student">Students</option>
+                                <option value="teacher">Teachers</option>
+                                <option value="admin">Admins</option>
+                            </select>
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                        
+                        <table id="usersTable" class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                
+                <div id="results" class="tab-content">
+                    <div class="tab-header">
+                        <h3>📊 Results Analysis</h3>
+                        <div class="result-filters">
+                            <select id="examSelect">
+                                <option value="">Select Exam</option>
+                            </select>
+                            <input type="date" id="dateFrom">
+                            <input type="date" id="dateTo">
+                            <button id="generateReport" class="btn btn-primary">📈 Generate Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-analysis">
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h4>Score Distribution</h4>
+                                <div id="scoreChart" class="chart-placeholder">
+                                    Chart will appear here
+                                </div>
+                            </div>
+                            
+                            <div class="chart-card">
+                                <h4>Pass/Fail Ratio</h4>
+                                <div id="passFailChart" class="chart-placeholder">
+                                    Chart will appear here
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-table-container">
+                            <table id="resultsTable" class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Student</th>
+                                        <th>Score</th>
+                                        <th>Time Taken</th>
+                                        <th>Date</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsTableBody">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            
+                <div id="settings" class="tab-content">
+                    <h3>⚙️ System Settings</h3>
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h4>General Settings</h4>
+                            <form id="generalSettings">
+                                <div class="form-group">
+                                    <label>Site Name</label>
+                                    <input type="text" id="siteName" value="Online Exam System">
+                                </div>
+                                <div class="form-group">
+                                    <label>Max Attempts per Exam</label>
+                                    <input type="number" id="maxAttempts" value="3" min="1">
+                                </div>
+                                <div class="form-group">
+                                    <label>Default Exam Duration (minutes)</label>
+                                    <input type="number" id="defaultDuration" value="30" min="5">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h4>Security Settings</h4>
+                            <form id="securitySettings">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="requireReauth">
+                                        Require re-authentication for sensitive actions
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="enable2FA">
+                                        Enable Two-Factor Authentication (Admins only)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Session Timeout (minutes)</label>
+                                    <input type="number" id="sessionTimeout" value="30" min="5">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Security Settings</button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h4>Notification Settings</h4>
+                            <form id="notificationSettings">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="emailNotifications">
+                                        Enable Email Notifications
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="examReminders">
+                                        Send exam reminders
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="resultNotifications">
+                                        Send result notifications
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Notification Settings</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <div id="createExamModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>➕ Create New Exam</h2>
+            <form id="createExamForm">
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

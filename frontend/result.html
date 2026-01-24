@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results - Online Exam System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="results-header">
+            <a href="dashboard.html" class="back-dashboard">← Back to Dashboard</a>
+            <h1>📊 Exam Results</h1>
+            <p class="results-date" id="resultsDate">Loading results...</p>
+        </header>
+        
+        <main class="results-container">
+            <section class="score-summary">
+                <div class="score-display">
+                    <div class="score-circle">
+                        <svg width="200" height="200" viewBox="0 0 120 120">
+                            <circle class="score-bg" cx="60" cy="60" r="54" stroke-width="12"></circle>
+                            <circle id="scoreCircle" class="score-progress" cx="60" cy="60" r="54" stroke-width="12" 
+                                    stroke-dasharray="339" stroke-dashoffset="339"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <div id="scoreValue" class="score-percentage">0%</div>
+                            <div class="score-label">Overall Score</div>
+                        </div>
+                    </div>
+                    
+                    <div class="score-details">
+                        <div class="detail-card">
+                            <div class="detail-icon">📈</div>
+                            <div class="detail-content">
+                                <div class="detail-value" id="correctAnswers">0</div>
+                                <div class="detail-label">Correct Answers</div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">📉</div>
+                            <div class="detail-content">
+                                <div class="detail-value" id="incorrectAnswers">0</div>
+                                <div class="detail-label">Incorrect Answers</div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">⏱️</div>
+                            <div class="detail-content">
+                                <div class="detail-value" id="timeTaken">0:00</div>
+                                <div class="detail-label">Time Taken</div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">🏆</div>
+                            <div class="detail-content">
+                                <div class="detail-value" id="rank">-</div>
+                                <div class="detail-label">Rank</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="performance-section">
+                <h2>📋 Performance Breakdown</h2>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <h3>Exam Details</h3>
+                        <ul id="detailsList" class="details-list">
+                            <li>Total Questions: <span id="totalQuestions">0</span></li>
+                            <li>Answered: <span id="answeredQuestions">0</span></li>
+                            <li>Skipped: <span id="skippedQuestions">0</span></li>
+                            <li>Accuracy: <span id="accuracyRate">0%</span></li>
+                            <li>Submission Time: <span id="submissionTime">--:--</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="performance-card">
+                        <h3>Score Distribution</h3>
+                        <div class="score-bars">
+                            <div class="score-bar">
+                                <div class="bar-label">Excellent (90-100%)</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill excellent" style="width: 0%"></div>
+                                </div>
+                                <span class="bar-value" id="excellentCount">0</span>
+                            </div>
+                            <div class="score-bar">
+                                <div class="bar-label">Good (70-89%)</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill good" style="width: 0%"></div>
+                                </div>
+                                <span class="bar-value" id="goodCount">0</span>
+                            </div>
+                            <div class="score-bar">
+                                <div class="bar-label">Average (50-69%)</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill average" style="width: 0%"></div>
+                                </div>
+                                <span class="bar-value" id="averageCount">0</span>
+                            </div>
+                            <div class="score-bar">
+                                <div class="bar-label">Needs Improvement (&lt;50%)</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill poor" style="width: 0%"></div>
+                                </div>
+                                <span class="bar-value" id="poorCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="review-section" id="reviewSection" style="display: none;">
+                <h2>🔍 Question Review</h2>
+                <div id="questionReview" class="question-review">
+                </div>
+            </section>
+            
+            <section class="actions-section">
+                <div class="action-buttons">
+                    <button id="toggleReview" class="btn btn-info">
+                        <span class="btn-icon">👁️</span>
+                        Toggle Question Review
+                    </button>
+                    
+                    <a href="dashboard.html" class="btn btn-primary">
+                        <span class="btn-icon">📊</span>
+                        Go to Dashboard
+                    </a>
+                    
+                    <button id="retakeBtn" class="btn btn-warning">
+                        <span class="btn-icon">🔄</span>
+                        Retake Exam
+                    </button>
+                    
+                    <button id="downloadBtn" class="btn btn-success">
+                        <span class="btn-icon">📥</span>
+                        Download Results
+                    </button>
+                    
+                    <button class="btn btn-secondary logout-btn">
+                        <span class="btn-icon">🚪</span>
+                        Logout
+                    </button>
+                </div>
+                
+                <div class="result-message" id="resultMessage">
+                    <div class="message-icon">💡</div>
+                    <div class="message-content">
+                        <h3>Performance Feedback</h3>
+                        <p id="feedbackText">Loading feedback...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="results-footer">
+            <p>Results are final. Contact administrator within 24 hours for any discrepancies.</p>
+            <p class="print-note">Print this page for your records (Ctrl+P)</p>
+        </footer>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
