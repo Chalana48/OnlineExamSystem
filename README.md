@@ -1,104 +1,106 @@
-# # Online Exam System
+# Online Exam System
 
-## Project Structure
-frontend Developer - [W.P.S.Weerasinghe/ITBIN-2313-0123]
-- **frontend/** - HTML files
-  - index.html - Home page
-  - login.html - Login page
-  - register.html - Registration page
-  - student-dashboard.html - Student dashboard
-  - exam.html - Exam interface
-  - result.html - Results page
-- **scripts/** - JavaScript files
-  - config.js - Configuration settings
-  - main.js - Main JavaScript code
-- **style/** - CSS files
-  - style.css - Main stylesheet
+## 👥Group Information
+- **Student 1:** L. C. Isuranga Silva - ITBIN-2313-0109 - Role: DevOps Engineer / Release Manager
+- **Student 2:** J. A. B. B. Jayakody - ITBIN-2313-0044 - Role: Backend Developer
+- **Student 3:** W. P. S. Weerasinghe - ITBIN-2313-0123 - Role: Frontend Developer
 
-## Technologies Used
-- HTML5
-- CSS3
-- JavaScript
+---
 
-## How to Use
-1. Clone this repository
-2. Open `frontend/index.html` in your browser
-3. Start using the Online Exam System
+## 📌Project Description
+The Online Exam System is a web-based application that allows students to register, log in, attend online examinations, and view results.  
+Administrators can manage users and exams through a secure backend.  
+The project demonstrates real-world Git collaboration, CI/CD automation, and cloud deployment practices.
 
+---
 
-Advanced Git & DevOps Team Collaboration Assignment
-Backend Developer - [J.A.B.B.Jayakody/ITBIN-2313-0044]
-Responsibilities:
-Designed and implemented the complete backend architecture
+## 🌍Live Deployment
+🔗 **Live URL:** https://online-exam-system.vercel.app
 
-Created RESTful API with Express.js
+---
 
-Implemented MongoDB database integration
+## 🛠Technologies Used
+- HTML5, CSS3, JavaScript
+- Node.js, Express.js
+- MongoDB, Mongoose
+- GitHub Actions
+- Vercel
 
-Developed authentication and authorization system
+---
 
-Created middleware for security and error handling
+## ✨Features
+- User registration and authentication
+- Online exam interface for students
+- Student dashboard and result viewing
+- Secure backend APIs
+- Responsive user interface
+- Automated CI/CD pipeline
+- Cloud-based deployment
 
-Set up project structure and dependencies
+---
 
-Technical Contributions:
-Server Configuration
+## 🌿Branch Strategy
+We implemented the following branching strategy:
+- `main` - Production branch
+- `develop` - Integration branch
+- `feature/*` - Feature development branches
 
-Set up Express.js server with CORS, body parsing, and routing
+---
 
-Configured environment variables for security
+## 👤Individual Contributions
 
-Implemented error handling middleware
+### L. C. Isuranga Silva
+- Repository setup and initial configuration
+- Git branching strategy implementation
+- GitHub Actions CI pipeline implementation
+- Deployment workflow setup and management
+- Release coordination and deployment verification
+- Merge conflict resolution
+- Final documentation and README management
 
-Database Integration
+### J. A. B. B. Jayakody
+- Backend architecture design
+- RESTful API development using Express.js
+- MongoDB database integration with Mongoose
+- JWT-based authentication and authorization
+- Backend middleware for security and error handling
 
-Designed MongoDB schemas for User, Exam, and Result models
+### W. P. S. Weerasinghe
+- Frontend UI design and implementation
+- HTML page creation for exam workflow
+- Client-side logic using JavaScript
+- CSS styling and responsive layout
+- Frontend feature documentation
 
-Implemented database connection with Mongoose
+---
 
-Created data validation and sanitization
+## Setup Instructions
 
-Authentication System
+### Prerequisites
+- Node.js (version 18 or higher)
+- Git
 
-Implemented JWT-based authentication
+## ⚙️ CI/CD Pipeline
 
-Created password hashing with bcryptjs
+### Continuous Integration (CI)
+- Runs on every push and pull request  
+- Ensures code consistency  
+- Validates project structure  
 
-Developed role-based access control (RBAC)
+### Continuous Deployment (CD)
+- Triggered automatically on merge to the `main` branch  
+- Deploys the latest production-ready version  
 
-Built login and registration endpoints
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/Chalana48/OnlineExamSystem.git
 
-API Development
+# Navigate to project directory
+cd OnlineExamSystem
 
-Created RESTful endpoints for all major functionalities
+# Install dependencies (if applicable)
+npm install
 
-Implemented CRUD operations for users and exams
-
-Built statistics and dashboard APIs
-
-Created comprehensive error responses
-
-Project Structure
-
-Organized code into models, controllers, routes, and middleware
-
-Set up package.json with dependencies and scripts
-
-Created configuration files for database and environment
-
-Files Created/Modified:
-backend/server.js - Main server file with all endpoints
-
-backend/package.json - Project dependencies and configuration
-
-backend/.env - Environment variables
-
-backend/config/database.js - MongoDB connection setup
-
-backend/models/User.js - User schema and methods
-
-backend/controllers/authController.js - Authentication logic
-
-backend/middleware/authMiddleware.js - JWT validation
-
-backend/routes/authRoutes.js - Authentication routes
+# Run development server (if applicable)
+npm run dev
