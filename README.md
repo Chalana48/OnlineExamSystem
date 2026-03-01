@@ -104,3 +104,88 @@ npm install
 
 # Run development server (if applicable)
 npm run dev
+
+# Online Exam System - Docker Setup
+
+This project is a backend service for an **Online Exam System**.  
+The application is containerized using **Docker** and managed with **Docker Compose**.
+
+## Technologies Used
+- Node.js
+- Express.js
+- MongoDB
+- Docker
+- Docker Compose
+
+## Project Structure
+
+Assignment 2
+
+OnlineExamSystem
+│
+├── Backend
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── utils
+│   ├── Dockerfile
+│   ├── package.json
+│   └── server.js
+│
+├── docker-compose.yml
+└── README.md
+```
+
+## Run the Project Using Docker
+
+### 1. Build Containers
+
+```
+docker compose build
+```
+
+### 2. Start Containers
+
+```
+docker compose up
+```
+
+### 3. Check Running Containers
+
+```
+docker ps
+```
+
+### 4. View Docker Images
+
+```
+docker images
+```
+
+## Docker Images
+
+Below is the Docker images created for this project.
+
+![Docker Images](doc.png)
+
+## Application URL
+
+```
+http://localhost:5000
+```
+
+## Database
+
+MongoDB runs inside a Docker container and connects using:
+
+```
+mongodb://mongo:27017/examdb
+```
+
+## Stop Containers
+
+```
+docker compose down
+```
